@@ -23,9 +23,9 @@ jobs:
           
       - name: Install Dependencies and Run Builder
         run: |
-          python -m pip install --upgrade pip
-          pip install edgartools pandas numpy requests
-          python build_data.py
+          python3 -m pip install --upgrade pip
+          python3 -m pip install edgartools pandas numpy requests
+          python3 build_data.py
         env:
           EDGAR_IDENTITY: "ETFOverlapAnalyst research@example.com"
           
