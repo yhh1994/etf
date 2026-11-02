@@ -62,6 +62,10 @@ def build_static_json():
                 "shared_holdings": metrics["shared_holdings_df"].to_dict(orient="records")
             }
 
+    output = {
+        "watchlist": list(holdings_cache.keys()),
+        "comparisons": comparisons
+    }
     output = clean_json(output)
 
     with open("etf_data.json", "w") as f:
