@@ -1,10 +1,28 @@
 import os
 import json
 import pandas as pd
+import math
+import numpy as np
 from src.fetcher import fetch_etf_holdings
 from src.analyzer import compute_pairwise_overlap
 
-WATCHLIST = ["VUG", "VOO", "SCHD", "QQQ", "IVV"]
+WATCHLIST = ["VUG", "VOO", "SCHD", "QQQ", "SPMO"]
+
+def clean_json(obj):
+    """Convert NaN and Infinity to JSON-compatible null values."""
+    if isinstance(obj, dict):
+        return {k: clean_json(v) for k, v in obj.items()}
+
+    if isinstance(obj, list):
+        return [clean_json(v) for v in obj]
+
+    if isinstance(obj, (float, np.floating)):
+        return float(obj) if math.isfinite(float(obj)) else None
+
+    if isinstance(obj, np.integer):
+        return int(obj)
+
+    return obj
 
 def build_static_json():
     print("[*] Building static ETF overlap data...")
@@ -44,14 +62,12 @@ def build_static_json():
                 "shared_holdings": metrics["shared_holdings_df"].to_dict(orient="records")
             }
 
-    output = {
-        "watchlist": list(holdings_cache.keys()),
-        "comparisons": comparisons
-    }
-    
+    output = clean_json(output)
+
     with open("etf_data.json", "w") as f:
-        json.dump(output, f, indent=2)
-    print("[*] Generated etf_data.json successfully!")
+        json.dump(output, f, indent=2, allow_nan=False)
+    
+    print("[+] Successfully generated valid JSON.")
 
 if __name__ == "__main__":
     build_static_json()
