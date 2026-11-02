@@ -3,32 +3,17 @@ import pandas as pd
 import numpy as np
 
 
+
 def _prepare_holdings(df: pd.DataFrame) -> pd.DataFrame:
     """
     Prepare holdings for equity overlap analysis.
 
-    - Remove missing ticker identifiers.
+    - Remove missing or invalid ticker identifiers.
     - Exclude cash equivalents and money-market instruments.
     - Remove invalid or non-positive weights.
     - Aggregate duplicate tickers.
     - Normalize weights to sum to 1.
     """
-    df = df.dropna(subset=["ticker"]).copy()
-
-    df["ticker"] = df["ticker"].astype(str).str.strip().str.upper()
-    
-    df = df[
-        (df["ticker"] != "") &
-        (df["ticker"] != "NAN")
-    ]
-    
-    df = (
-        df.groupby("ticker", as_index=False)
-          .agg({
-              "name": "first",
-              "weight": "sum"
-          })
-    )
 
     required = {"ticker", "name", "weight"}
     missing = required - set(df.columns)
@@ -36,16 +21,24 @@ def _prepare_holdings(df: pd.DataFrame) -> pd.DataFrame:
     if missing:
         raise ValueError(f"Missing required columns: {missing}")
 
-    # Normalize ticker identifiers
-    df["ticker"] = df["ticker"].astype("string").str.strip().str.upper()
+    df = df.copy()
+    original_count = len(df)
+
+    # Clean ticker identifiers
+    df["ticker"] = (
+        df["ticker"]
+        .astype("string")
+        .str.strip()
+        .str.upper()
+    )
 
     invalid_tickers = ["", "NAN", "NONE", "NULL", "N/A", "-"]
     df.loc[df["ticker"].isin(invalid_tickers), "ticker"] = pd.NA
 
-    # Exclude unidentified positions
+    # Ignore unidentified positions
     df = df.dropna(subset=["ticker"]).copy()
 
-    # Exclude identifiable cash-like instruments
+    # Exclude cash-like instruments
     cash_pattern = (
         r"money market|market liquidity|cash equivalent|"
         r"cash and cash equivalents|repurchase agreement|"
@@ -60,12 +53,14 @@ def _prepare_holdings(df: pd.DataFrame) -> pd.DataFrame:
 
     # Convert weights to numeric
     df["weight"] = pd.to_numeric(df["weight"], errors="coerce")
+    df["weight"] = df["weight"].replace(
+        [np.inf, -np.inf], np.nan
+    )
 
-    df = df.replace([np.inf, -np.inf], np.nan)
     df = df.dropna(subset=["weight"])
     df = df[df["weight"] > 0].copy()
 
-    # Aggregate duplicate positions by ticker
+    # Aggregate duplicate tickers
     holdings = (
         df.groupby("ticker", as_index=False)
         .agg(
@@ -77,25 +72,18 @@ def _prepare_holdings(df: pd.DataFrame) -> pd.DataFrame:
     total_weight = holdings["weight"].sum()
 
     if not np.isfinite(total_weight) or total_weight <= 0:
-        if df.empty:
-            print("[WARNING] Input holdings DataFrame is empty.")
-        else:
-            print("[WARNING] No valid positive holdings weights after filtering.")
-            print("Columns:", df.columns.tolist())
-            print("Original row count:", len(df))
-            print("Ticker missing:", df["ticker"].isna().sum())
-            print("Weight sample:", df["weight"].head(10).tolist())
-            print("Weight dtype:", df["weight"].dtype)
-        
-            print("First 10 rows:")
-            print(df.head(10).to_string())
-        
+        print("\n[WARNING] No valid holdings after preprocessing.")
+        print(f"Original rows: {original_count}")
+        print(f"Rows remaining: {len(df)}")
+        print("Original data sample:")
+        print(df.head(10).to_string())
         raise ValueError("No valid positive holdings weights.")
 
-    # Normalize to 100% of the included equity holdings
+    # Normalize identifiable equity holdings to 100%
     holdings["weight"] /= total_weight
 
     return holdings
+
 
 
 def compute_pairwise_overlap(
