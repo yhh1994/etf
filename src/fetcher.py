@@ -1,9 +1,12 @@
 import os
 import pandas as pd
-from edgartools import set_identity, Company
+from edgar import set_identity, Company
 
-# SEC requires a user identity string (email format) for API requests
-set_identity("ETFOverlapAnalyst research@example.com")
+# SEC identity
+set_identity(os.getenv(
+    "EDGAR_IDENTITY",
+    "ETFOverlapAnalyst research@example.com"
+))
 
 DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data"))
 os.makedirs(DATA_DIR, exist_ok=True)
