@@ -77,6 +77,19 @@ def _prepare_holdings(df: pd.DataFrame) -> pd.DataFrame:
     total_weight = holdings["weight"].sum()
 
     if not np.isfinite(total_weight) or total_weight <= 0:
+        if df.empty:
+            print("[WARNING] Input holdings DataFrame is empty.")
+        else:
+            print("[WARNING] No valid positive holdings weights after filtering.")
+            print("Columns:", df.columns.tolist())
+            print("Original row count:", len(df))
+            print("Ticker missing:", df["ticker"].isna().sum())
+            print("Weight sample:", df["weight"].head(10).tolist())
+            print("Weight dtype:", df["weight"].dtype)
+        
+            print("First 10 rows:")
+            print(df.head(10).to_string())
+        
         raise ValueError("No valid positive holdings weights.")
 
     # Normalize to 100% of the included equity holdings
