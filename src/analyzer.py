@@ -13,7 +13,22 @@ def _prepare_holdings(df: pd.DataFrame) -> pd.DataFrame:
     - Aggregate duplicate tickers.
     - Normalize weights to sum to 1.
     """
-    df = df.copy()
+    df = df.dropna(subset=["ticker"]).copy()
+
+    df["ticker"] = df["ticker"].astype(str).str.strip().str.upper()
+    
+    df = df[
+        (df["ticker"] != "") &
+        (df["ticker"] != "NAN")
+    ]
+    
+    df = (
+        df.groupby("ticker", as_index=False)
+          .agg({
+              "name": "first",
+              "weight": "sum"
+          })
+    )
 
     required = {"ticker", "name", "weight"}
     missing = required - set(df.columns)
