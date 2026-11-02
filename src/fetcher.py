@@ -1,3 +1,4 @@
+
 import os
 import pandas as pd
 from edgar import set_identity, Company
@@ -8,66 +9,137 @@ set_identity(os.getenv(
     "ETFOverlapAnalyst research@example.com"
 ))
 
-DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data"))
+DATA_DIR = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "../data")
+)
 os.makedirs(DATA_DIR, exist_ok=True)
+
 
 def fetch_etf_holdings(ticker: str) -> pd.DataFrame:
     """
-    Fetches the latest official SEC Form N-PORT filing for a given ETF ticker 
-    and returns a standardized DataFrame containing holdings, tickers, and weights.
+    Fetch the latest SEC N-PORT filing and return standardized holdings.
+
+    Missing ticker identifiers are retained as NA so that the analyzer
+    can exclude them from equity overlap calculations.
     """
-    cache_file = os.path.join(DATA_DIR, f"{ticker.upper()}_holdings.parquet")
-    
+
+    ticker = ticker.upper().strip()
+    cache_file = os.path.join(
+        DATA_DIR, f"{ticker}_holdings.parquet"
+    )
+
     try:
-        print(f"[*] Fetching SEC N-PORT data for {ticker.upper()}...")
+        print(f"[*] Fetching SEC N-PORT data for {ticker}...")
+
         company = Company(ticker)
         filings = company.get_filings(form="NPORT-P")
-        
+
         if not filings:
             raise ValueError(f"No N-PORT filings found for {ticker}")
-            
-        # Parse the most recent filing object
+
         latest_filing = filings[0]
         fund_obj = latest_filing.obj()
-        
-        # Extract holdings dataframe via edgartools helper
         df = fund_obj.investment_data()
-        
-        # Standardize columns required for overlap analysis
-        # Expected columns from edgartools: name, ticker, value_usd, pct_value
-        standard_cols = {}
-        for col in df.columns:
-            if 'ticker' in col.lower():
-                standard_cols[col] = 'ticker'
-            elif 'name' in col.lower():
-                standard_cols[col] = 'name'
-            elif 'pct' in col.lower() or 'weight' in col.lower():
-                standard_cols[col] = 'weight'
-            elif 'value' in col.lower():
-                standard_cols[col] = 'value'
-                
-        df = df.rename(columns=standard_cols)
-        
-        # Clean and coerce types
-        if 'ticker' not in df.columns:
-            df['ticker'] = pd.NA
-        
-        if 'name' not in df.columns:
-            df['name'] = df['ticker']
-            
-        df['weight'] = pd.to_numeric(df['weight'], errors='coerce').fillna(0.0)
-        
-        # Normalization check: N-PORT weights are occasionally stored as fractions or raw percentages
-        if df['weight'].sum() > 2.0: 
-            df['weight'] = df['weight'] / 100.0
-            
-        # Select and save subset
-        clean_df = df[['ticker', 'name', 'weight']].copy()
-        clean_df.to_parquet(cache_file)
+
+        if df is None or df.empty:
+            raise ValueError(f"Empty investment data for {ticker}")
+
+        print(f"[{ticker}] Original columns: {df.columns.tolist()}")
+        print(f"[{ticker}] Original rows: {len(df)}")
+
+        # Identify columns explicitly
+        columns_lower = {
+            col: col.lower().strip()
+            for col in df.columns
+        }
+
+        ticker_col = next(
+            (col for col, name in columns_lower.items()
+             if name == "ticker" or name.endswith("_ticker")),
+            None
+        )
+
+        name_col = next(
+            (col for col, name in columns_lower.items()
+             if name in ("name", "issuer_name", "investment_name")),
+            None
+        )
+
+        weight_col = next(
+            (col for col, name in columns_lower.items()
+             if name in ("pct_value", "weight", "portfolio_weight")),
+            None
+        )
+
+        if weight_col is None:
+            raise ValueError(
+                f"Cannot identify weight column. "
+                f"Available columns: {df.columns.tolist()}"
+            )
+
+        clean_df = pd.DataFrame()
+
+        clean_df["ticker"] = (
+            df[ticker_col] if ticker_col else pd.NA
+        )
+
+        clean_df["name"] = (
+            df[name_col] if name_col else pd.NA
+        )
+
+        clean_df["weight"] = pd.to_numeric(
+            df[weight_col], errors="coerce"
+        )
+
+        # Normalize ticker strings without replacing missing values
+        clean_df["ticker"] = (
+            clean_df["ticker"]
+            .astype("string")
+            .str.strip()
+            .str.upper()
+        )
+
+        invalid_tickers = ["", "NAN", "NONE", "NULL", "N/A", "-"]
+        clean_df.loc[
+            clean_df["ticker"].isin(invalid_tickers), "ticker"
+        ] = pd.NA
+
+        # Remove invalid weights; analyzer handles zero weights
+        clean_df["weight"] = clean_df["weight"].replace(
+            [float("inf"), float("-inf")], pd.NA
+        )
+
+        clean_df = clean_df.dropna(subset=["weight"])
+        clean_df = clean_df[clean_df["weight"] > 0].copy()
+
+        # N-PORT percentage weights may be fractions or percentages.
+        # Inspect the total before deciding whether conversion is needed.
+        weight_sum = clean_df["weight"].sum()
+
+        if weight_sum > 2.0:
+            clean_df["weight"] /= 100.0
+
+        print(
+            f"[{ticker}] Valid rows: {len(clean_df)}, "
+            f"missing tickers: {clean_df['ticker'].isna().sum()}, "
+            f"weight sum: {clean_df['weight'].sum():.4f}"
+        )
+
+        clean_df.to_parquet(cache_file, index=False)
+
         return clean_df
 
     except Exception as e:
-        print(f"[!] Error pulling via EDGAR for {ticker}: {e}. Checking local cache...")
+        print(
+            f"[!] Error pulling via EDGAR for {ticker}: {e}. "
+            "Checking local cache..."
+        )
+
         if os.path.exists(cache_file):
+            print(f"[{ticker}] Using cached holdings.")
             return pd.read_parquet(cache_file)
-        raise RuntimeError(f"Could not retrieve holdings for {ticker} from SEC or cache.") from e
+
+        raise RuntimeError(
+            f"Could not retrieve holdings for {ticker} "
+            "from SEC or cache."
+        ) from e
