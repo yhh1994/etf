@@ -50,7 +50,10 @@ def fetch_etf_holdings(ticker: str) -> pd.DataFrame:
         
         # Clean and coerce types
         if 'ticker' not in df.columns:
-            df['ticker'] = df['name'] # Fallback identifier if ticker is missing
+            df['ticker'] = pd.NA
+        
+        if 'name' not in df.columns:
+            df['name'] = df['ticker']
             
         df['weight'] = pd.to_numeric(df['weight'], errors='coerce').fillna(0.0)
         
