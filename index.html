@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETF Overlap Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans">
+    <div class="max-w-5xl mx-auto px-4 py-8">
+        <header class="mb-8 border-b pb-4">
+            <h1 class="text-3xl font-bold tracking-tight text-slate-900">Institutional ETF Overlap Analyzer</h1>
+            <p class="text-sm text-slate-500 mt-1">Comparing official monthly holdings via SEC Form N-PORT data.</p>
+        </header>
+
+        <!-- Selection Controls -->
+        <div class="bg-white shadow-sm rounded-lg p-6 mb-8 grid grid-cols-1 md:grid-cols-2 gap-6 border border-slate-200">
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">First ETF (Fund A)</label>
+                <select id="etfA" class="w-full border border-slate-300 rounded-md p-2 bg-white focus:ring-2 focus:ring-blue-500 outline-none"></select>
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-slate-700 mb-2">Second ETF (Fund B)</label>
+                <select id="etfB" class="w-full border border-slate-300 rounded-md p-2 bg-white focus:ring-2 focus:ring-blue-500 outline-none"></select>
+            </div>
+        </div>
+
+        <!-- Summary Metrics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                <p class="text-xs font-medium text-slate-500 uppercase tracking-wider">Sum-of-Min Overlap</p>
+                <p id="metric-som" class="text-3xl font-bold text-blue-600 mt-2">--</p>
+                <p class="text-xs text-slate-400 mt-1">Exact duplicated capital allocation</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                <p id="label-dir-a" class="text-xs font-medium text-slate-500 uppercase tracking-wider">Fund A in Fund B</p>
+                <p id="metric-dir-a" class="text-3xl font-bold text-slate-900 mt-2">--</p>
+                <p class="text-xs text-slate-400 mt-1">Fund A weight covered by Fund B</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+                <p id="label-dir-b" class="text-xs font-medium text-slate-500 uppercase tracking-wider">Fund B in Fund A</p>
+                <p id="metric-dir-b" class="text-3xl font-bold text-slate-900 mt-2">--</p>
+                <p class="text-xs text-slate-400 mt-1">Fund B weight covered by Fund A</p>
+            </div>
+        </div>
+
+        <!-- Shared Holdings Table -->
+        <div class="bg-white shadow-sm rounded-lg border border-slate-200 overflow-hidden">
+            <div class="p-6 border-b border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900">Shared Constituents Breakdown</h3>
+                <p class="text-sm text-slate-500 mt-0.5">Matching overlapping holdings sorted by weight.</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-slate-50 text-slate-600 text-xs uppercase tracking-wider border-b border-slate-200">
+                        <tr>
+                            <th class="py-3 px-6">Ticker</th>
+                            <th class="py-3 px-6">Security Name</th>
+                            <th id="th-weight-a" class="py-3 px-6 text-right">Weight A</th>
+                            <th id="th-weight-b" class="py-3 px-6 text-right">Weight B</th>
+                            <th class="py-3 px-6 text-right">Overlap (Min)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="holdings-table-body" class="divide-y divide-slate-100 text-sm"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let globalData = null;
+
+        async function init() {
+            try {
+                const response = await fetch('etf_data.json');
+                globalData = await response.json();
+                
+                const selectA = document.getElementById('etfA');
+                const selectB = document.getElementById('etfB');
+                
+                globalData.watchlist.forEach(ticker => {
+                    selectA.add(new Option(ticker, ticker));
+                    selectB.add(new Option(ticker, ticker));
+                });
+
+                if (globalData.watchlist.length > 1) selectB.selectedIndex = 1;
+
+                selectA.addEventListener('change', updateView);
+                selectB.addEventListener('change', updateView);
+
+                updateView();
+            } catch (err) {
+                console.error("Failed to load etf_data.json", err);
+            }
+        }
+
+        function updateView() {
+            const t1 = document.getElementById('etfA').value;
+            const t2 = document.getElementById('etfB').value;
+
+            if (t1 === t2) return;
+
+            let key = `${t1}_vs_${t2}`;
+            let reverse = false;
+            if (!globalData.comparisons[key]) {
+                key = `${t2}_vs_${t1}`;
+                reverse = true;
+            }
+
+            const data = globalData.comparisons[key];
+            if (!data) return;
+
+            const weightA = reverse ? data.directional_b_in_a : data.directional_a_in_b;
+            const weightB = reverse ? data.directional_a_in_b : data.directional_b_in_a;
+
+            document.getElementById('metric-som').innerText = (data.sum_of_min * 100).toFixed(2) + '%';
+            document.getElementById('metric-dir-a').innerText = (weightA * 100).toFixed(2) + '%';
+            document.getElementById('metric-dir-b').innerText = (weightB * 100).toFixed(2) + '%';
+
+            document.getElementById('label-dir-a').innerText = `${t1} found in ${t2}`;
+            document.getElementById('label-dir-b').innerText = `${t2} found in ${t1}`;
+            document.getElementById('th-weight-a').innerText = `Weight (${t1})`;
+            document.getElementById('th-weight-b').innerText = `Weight (${t2})`;
+
+            const tbody = document.getElementById('holdings-table-body');
+            tbody.innerHTML = '';
+
+            data.shared_holdings.forEach(item => {
+                const wA = reverse ? item[`Weight in ${t2}`] : item[`Weight in ${t1}`];
+                const wB = reverse ? item[`Weight in ${t1}`] : item[`Weight in ${t2}`];
+                
+                const row = document.createElement('tr');
+                row.className = "hover:bg-slate-50 transition-colors";
+                row.innerHTML = `
+                    <td class="py-3 px-6 font-mono font-medium text-slate-900">${item.ticker}</td>
+                    <td class="py-3 px-6 text-slate-600 truncate max-w-xs">${item.name || 'N/A'}</td>
+                    <td class="py-3 px-6 text-right font-mono">${(wA * 100).toFixed(2)}%</td>
+                    <td class="py-3 px-6 text-right font-mono">${(wB * 100).toFixed(2)}%</td>
+                    <td class="py-3 px-6 text-right font-mono font-semibold text-blue-600">${(item['Overlap Allocation (Min)'] * 100).toFixed(2)}%</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        init();
+    </script>
+</body>
+</html>
