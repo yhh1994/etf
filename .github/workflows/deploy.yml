@@ -21,11 +21,13 @@ jobs:
           python-version: '3.11'
         
           
-      - name: Install Dependencies
+      - name: Install Dependencies and Run Builder
         run: |
           python -m pip install --upgrade pip
           pip install edgartools pandas numpy requests
-          pip install -r requirements.txt || true
+          python build_data.py
+        env:
+          EDGAR_IDENTITY: "ETFOverlapAnalyst research@example.com"
           
       - name: Run Data Builder Script
         run: python build_data.py
