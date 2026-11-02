@@ -72,25 +72,43 @@
 
         async function init() {
             try {
-                const response = await fetch('etf_data.json');
+                const response = await fetch('./etf_data.json?v=' + Date.now());
+        
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: Failed to load ETF data`);
+                }
+        
                 globalData = await response.json();
-                
+        
+                if (!globalData.watchlist || globalData.watchlist.length === 0) {
+                    throw new Error("ETF watchlist is empty. Check SEC data retrieval.");
+                }
+        
                 const selectA = document.getElementById('etfA');
                 const selectB = document.getElementById('etfB');
-                
+        
                 globalData.watchlist.forEach(ticker => {
                     selectA.add(new Option(ticker, ticker));
                     selectB.add(new Option(ticker, ticker));
                 });
-
-                if (globalData.watchlist.length > 1) selectB.selectedIndex = 1;
-
+        
+                if (globalData.watchlist.length > 1) {
+                    selectB.selectedIndex = 1;
+                }
+        
                 selectA.addEventListener('change', updateView);
                 selectB.addEventListener('change', updateView);
-
+        
                 updateView();
+        
             } catch (err) {
-                console.error("Failed to load etf_data.json", err);
+                console.error("ETF initialization failed:", err);
+                document.querySelector('.max-w-5xl').insertAdjacentHTML(
+                    'afterbegin',
+                    `<p class="bg-red-100 text-red-700 p-4 rounded mb-4">
+                        ${err.message}
+                    </p>`
+                );
             }
         }
 
