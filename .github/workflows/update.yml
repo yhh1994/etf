@@ -1,15 +1,16 @@
-name: Update ETF Overlap Data
+name: Build and Deploy ETF Overlap Static Site
 
 on:
   schedule:
     - cron: '0 0 1 * *' # Run monthly
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
       
@@ -22,14 +23,14 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
           
-      - name: Run Fetcher & Processor
-        run: python fetch.py
+      - name: Run Data Builder Script
+        run: python build_data.py
         env:
           EDGAR_IDENTITY: "ETFOverlapAnalyst research@example.com"
           
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add etf_data.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update ETF overlap JSON data" && git push)
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          exclude_assets: .github/,src/,requirements.txt,build_data.py,app.py,fetch.py
