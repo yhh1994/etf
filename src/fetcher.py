@@ -1,7 +1,7 @@
 
 import os
 import pandas as pd
-from edgar import set_identity, Company
+from edgar import set_identity, Fund
 
 # SEC identity
 set_identity(os.getenv(
@@ -31,14 +31,26 @@ def fetch_etf_holdings(ticker: str) -> pd.DataFrame:
     try:
         print(f"[*] Fetching SEC N-PORT data for {ticker}...")
 
-        company = Company(ticker)
-        filings = company.get_filings(form="NPORT-P")
+        fund = Fund(ticker)
 
+        filings = fund.get_filings(
+            form="NPORT-P",
+            series_only=True
+        )
+        
         if not filings:
             raise ValueError(f"No N-PORT filings found for {ticker}")
-
+        
         latest_filing = filings[0]
         fund_obj = latest_filing.obj()
+        
+        print(f"Fund name: {fund_obj.general_info.series_name}")
+        print(f"Series ID: {fund_obj.general_info.series_id}")
+        print(f"Reporting period: {fund_obj.reporting_period}")
+        
+        if not fund_obj.matches_ticker(ticker):
+            raise ValueError(f"Filing does not match {ticker}")
+        
         df = fund_obj.investment_data()
 
         if df is None or df.empty:
