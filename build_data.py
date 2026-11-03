@@ -6,7 +6,7 @@ import numpy as np
 from src.fetcher import fetch_etf_holdings
 from src.analyzer import compute_pairwise_overlap
 
-WATCHLIST = ["VUG", "VOO", "SCHD", "QQQ", "SPMO"]
+WATCHLIST = ["VUG", "VOO", "SCHD", "QQQ", "SPMO", "VGT"]
 
 def clean_json(obj):
     """Convert NaN and Infinity to JSON-compatible null values."""
