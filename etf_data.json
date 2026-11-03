@@ -4,7 +4,8 @@
     "VOO",
     "SCHD",
     "QQQ",
-    "SPMO"
+    "SPMO",
+    "VGT"
   ],
   "comparisons": {
     "VUG_vs_VOO": {
@@ -1515,6 +1516,368 @@
           "Weight in VUG": 0.001013411445046689,
           "Weight in SPMO": 0.001485759222962934,
           "Overlap Allocation (Min)": 0.001013411445046689
+        }
+      ]
+    },
+    "VUG_vs_VGT": {
+      "sum_of_min": 0.5561729664252433,
+      "directional_a_in_b": 0.5616710384416074,
+      "directional_b_in_a": 0.7322977783208503,
+      "shared_count": 50,
+      "total_count_a": 146,
+      "total_count_b": 316,
+      "count_overlap_a": 0.3424657534246575,
+      "count_overlap_b": 0.15822784810126583,
+      "shared_holdings": [
+        {
+          "ticker": "NVDA",
+          "name": "NVDA",
+          "Weight in VUG": 0.12634529619025328,
+          "Weight in VGT": 0.16847883786008888,
+          "Overlap Allocation (Min)": 0.12634529619025328
+        },
+        {
+          "ticker": "AAPL",
+          "name": "AAPL",
+          "Weight in VUG": 0.11674139700718493,
+          "Weight in VGT": 0.14591149740493614,
+          "Overlap Allocation (Min)": 0.11674139700718493
+        },
+        {
+          "ticker": "MSFT",
+          "name": "MSFT",
+          "Weight in VUG": 0.07617592742653517,
+          "Weight in VGT": 0.09471632576614979,
+          "Overlap Allocation (Min)": 0.07617592742653517
+        },
+        {
+          "ticker": "AVGO",
+          "name": "AVGO",
+          "Weight in VUG": 0.0428533984797828,
+          "Weight in VGT": 0.0421309771101545,
+          "Overlap Allocation (Min)": 0.0421309771101545
+        },
+        {
+          "ticker": "AMD",
+          "name": "AMD",
+          "Weight in VUG": 0.02618062933551022,
+          "Weight in VGT": 0.03213832862262302,
+          "Overlap Allocation (Min)": 0.02618062933551022
+        },
+        {
+          "ticker": "LRCX",
+          "name": "LRCX",
+          "Weight in VUG": 0.015067117249603341,
+          "Weight in VGT": 0.015611447526827011,
+          "Overlap Allocation (Min)": 0.015067117249603341
+        },
+        {
+          "ticker": "AMAT",
+          "name": "AMAT",
+          "Weight in VUG": 0.01595947954869677,
+          "Weight in VGT": 0.013978890943217076,
+          "Overlap Allocation (Min)": 0.013978890943217076
+        },
+        {
+          "ticker": "KLAC",
+          "name": "KLAC",
+          "Weight in VUG": 0.01103247918654974,
+          "Weight in VGT": 0.010025700246586151,
+          "Overlap Allocation (Min)": 0.010025700246586151
+        },
+        {
+          "ticker": "SNDK",
+          "name": "SNDK",
+          "Weight in VUG": 0.009439832572024243,
+          "Weight in VGT": 0.009837405376820098,
+          "Overlap Allocation (Min)": 0.009439832572024243
+        },
+        {
+          "ticker": "INTC",
+          "name": "INTC",
+          "Weight in VUG": 0.007902208296568408,
+          "Weight in VGT": 0.02034185534547101,
+          "Overlap Allocation (Min)": 0.007902208296568408
+        },
+        {
+          "ticker": "PANW",
+          "name": "PANW",
+          "Weight in VUG": 0.00784518514516894,
+          "Weight in VGT": 0.009195399996394352,
+          "Overlap Allocation (Min)": 0.00784518514516894
+        },
+        {
+          "ticker": "MRVL",
+          "name": "MRVL",
+          "Weight in VUG": 0.0075130502984211605,
+          "Weight in VGT": 0.007257365033642684,
+          "Overlap Allocation (Min)": 0.007257365033642684
+        },
+        {
+          "ticker": "PLTR",
+          "name": "PLTR",
+          "Weight in VUG": 0.007136897580417651,
+          "Weight in VGT": 0.01348611926276549,
+          "Overlap Allocation (Min)": 0.007136897580417651
+        },
+        {
+          "ticker": "ORCL",
+          "name": "ORCL",
+          "Weight in VUG": 0.007076873210523474,
+          "Weight in VGT": 0.014568814763920296,
+          "Overlap Allocation (Min)": 0.007076873210523474
+        },
+        {
+          "ticker": "WDC",
+          "name": "WDC",
+          "Weight in VUG": 0.0061965157854088765,
+          "Weight in VGT": 0.007565848118153027,
+          "Overlap Allocation (Min)": 0.0061965157854088765
+        },
+        {
+          "ticker": "APH",
+          "name": "APH",
+          "Weight in VUG": 0.006141493446339215,
+          "Weight in VGT": 0.007316457572558627,
+          "Overlap Allocation (Min)": 0.006141493446339215
+        },
+        {
+          "ticker": "STX",
+          "name": "STX",
+          "Weight in VUG": 0.006094474356588775,
+          "Weight in VGT": 0.00805661666169221,
+          "Overlap Allocation (Min)": 0.006094474356588775
+        },
+        {
+          "ticker": "CRWD",
+          "name": "CRWD",
+          "Weight in VUG": 0.005259135208894812,
+          "Weight in VGT": 0.007540808906747967,
+          "Overlap Allocation (Min)": 0.005259135208894812
+        },
+        {
+          "ticker": "ANET",
+          "name": "ANET",
+          "Weight in VUG": 0.005168098247888643,
+          "Weight in VGT": 0.006885783136391589,
+          "Overlap Allocation (Min)": 0.005168098247888643
+        },
+        {
+          "ticker": "APP",
+          "name": "APP",
+          "Weight in VUG": 0.004077655528144427,
+          "Weight in VGT": 0.005793071950674756,
+          "Overlap Allocation (Min)": 0.004077655528144427
+        },
+        {
+          "ticker": "TXN",
+          "name": "TXN",
+          "Weight in VUG": 0.003893580793802284,
+          "Weight in VGT": 0.011104389473916152,
+          "Overlap Allocation (Min)": 0.003893580793802284
+        },
+        {
+          "ticker": "CDNS",
+          "name": "CDNS",
+          "Weight in VUG": 0.003008221337863173,
+          "Weight in VGT": 0.0044369482609766895,
+          "Overlap Allocation (Min)": 0.003008221337863173
+        },
+        {
+          "ticker": "NOW",
+          "name": "NOW",
+          "Weight in VUG": 0.0029902140268949196,
+          "Weight in VGT": 0.005148061864880403,
+          "Overlap Allocation (Min)": 0.0029902140268949196
+        },
+        {
+          "ticker": "GLW",
+          "name": "GLW",
+          "Weight in VUG": 0.002964203466607443,
+          "Weight in VGT": 0.006115576993571934,
+          "Overlap Allocation (Min)": 0.002964203466607443
+        },
+        {
+          "ticker": "FTNT",
+          "name": "FTNT",
+          "Weight in VUG": 0.002811141323377292,
+          "Weight in VGT": 0.004168527914714442,
+          "Overlap Allocation (Min)": 0.002811141323377292
+        },
+        {
+          "ticker": "DDOG",
+          "name": "DDOG",
+          "Weight in VUG": 0.002565041406811166,
+          "Weight in VGT": 0.003608651147697294,
+          "Overlap Allocation (Min)": 0.002565041406811166
+        },
+        {
+          "ticker": "SNPS",
+          "name": "SNPS",
+          "Weight in VUG": 0.002512019880071309,
+          "Weight in VGT": 0.0038840824731529574,
+          "Overlap Allocation (Min)": 0.002512019880071309
+        },
+        {
+          "ticker": "SNOW",
+          "name": "SNOW",
+          "Weight in VUG": 0.0024890105382785414,
+          "Weight in VGT": 0.003601640168503877,
+          "Overlap Allocation (Min)": 0.0024890105382785414
+        },
+        {
+          "ticker": "NET",
+          "name": "NET",
+          "Weight in VUG": 0.0023399500197080017,
+          "Weight in VGT": 0.0034163500041064303,
+          "Overlap Allocation (Min)": 0.0023399500197080017
+        },
+        {
+          "ticker": "COHR",
+          "name": "COHR",
+          "Weight in VUG": 0.0022999337731118836,
+          "Weight in VGT": 0.0026711830726918353,
+          "Overlap Allocation (Min)": 0.0022999337731118836
+        },
+        {
+          "ticker": "TER",
+          "name": "TER",
+          "Weight in VUG": 0.0022859280868032426,
+          "Weight in VGT": 0.0027342818854325874,
+          "Overlap Allocation (Min)": 0.0022859280868032426
+        },
+        {
+          "ticker": "CIEN",
+          "name": "CIEN",
+          "Weight in VUG": 0.0020998525401312936,
+          "Weight in VGT": 0.0036827672134562726,
+          "Overlap Allocation (Min)": 0.0020998525401312936
+        },
+        {
+          "ticker": "MSI",
+          "name": "MSI",
+          "Weight in VUG": 0.002072841573678914,
+          "Weight in VGT": 0.003002702231694834,
+          "Overlap Allocation (Min)": 0.002072841573678914
+        },
+        {
+          "ticker": "LITE",
+          "name": "LITE",
+          "Weight in VUG": 0.0020048139544655134,
+          "Weight in VGT": 0.002786363445155113,
+          "Overlap Allocation (Min)": 0.0020048139544655134
+        },
+        {
+          "ticker": "MPWR",
+          "name": "MPWR",
+          "Weight in VUG": 0.0019377867414170156,
+          "Weight in VGT": 0.0033782904027707386,
+          "Overlap Allocation (Min)": 0.0019377867414170156
+        },
+        {
+          "ticker": "ADBE",
+          "name": "ADBE",
+          "Weight in VUG": 0.0013195357315069919,
+          "Weight in VGT": 0.00450805962136706,
+          "Overlap Allocation (Min)": 0.0013195357315069919
+        },
+        {
+          "ticker": "ADSK",
+          "name": "ADSK",
+          "Weight in VUG": 0.001302528826703642,
+          "Weight in VGT": 0.00229960117544074,
+          "Overlap Allocation (Min)": 0.001302528826703642
+        },
+        {
+          "ticker": "ALAB",
+          "name": "ALAB",
+          "Weight in VUG": 0.0012485068937988825,
+          "Weight in VGT": 0.002762325802206255,
+          "Overlap Allocation (Min)": 0.0012485068937988825
+        },
+        {
+          "ticker": "INTU",
+          "name": "INTU",
+          "Weight in VUG": 0.0011494666834734905,
+          "Weight in VGT": 0.003705803287948928,
+          "Overlap Allocation (Min)": 0.0011494666834734905
+        },
+        {
+          "ticker": "FLEX",
+          "name": "FLEX",
+          "Weight in VUG": 0.001013411445046689,
+          "Weight in VGT": 0.0030557853598735616,
+          "Overlap Allocation (Min)": 0.001013411445046689
+        },
+        {
+          "ticker": "FICO",
+          "name": "FICO",
+          "Weight in VUG": 0.0009083687977318794,
+          "Weight in VGT": 0.0015904907084494317,
+          "Overlap Allocation (Min)": 0.0009083687977318794
+        },
+        {
+          "ticker": "MDB",
+          "name": "MDB",
+          "Weight in VUG": 0.0008813578312794995,
+          "Weight in VGT": 0.0015584405178509543,
+          "Overlap Allocation (Min)": 0.0008813578312794995
+        },
+        {
+          "ticker": "WDAY",
+          "name": "WDAY",
+          "Weight in VUG": 0.0008513456463324111,
+          "Weight in VGT": 0.0015514295386575376,
+          "Overlap Allocation (Min)": 0.0008513456463324111
+        },
+        {
+          "ticker": "VRSN",
+          "name": "VRSN",
+          "Weight in VUG": 0.00073229731270896,
+          "Weight in VGT": 0.0014512726930372964,
+          "Overlap Allocation (Min)": 0.00073229731270896
+        },
+        {
+          "ticker": "SMCI",
+          "name": "SMCI",
+          "Weight in VUG": 0.0006272546653941502,
+          "Weight in VGT": 0.001414214660157807,
+          "Overlap Allocation (Min)": 0.0006272546653941502
+        },
+        {
+          "ticker": "ZS",
+          "name": "ZS",
+          "Weight in VUG": 0.0006062461359311881,
+          "Weight in VGT": 0.0007902375119437037,
+          "Overlap Allocation (Min)": 0.0006062461359311881
+        },
+        {
+          "ticker": "TEAM",
+          "name": "TEAM",
+          "Weight in VUG": 0.0005022038947812813,
+          "Weight in VGT": 0.0010776876588737961,
+          "Overlap Allocation (Min)": 0.0005022038947812813
+        },
+        {
+          "ticker": "FSLR",
+          "name": "FSLR",
+          "Weight in VUG": 0.0004932002392971546,
+          "Weight in VGT": 0.0019340286889268593,
+          "Overlap Allocation (Min)": 0.0004932002392971546
+        },
+        {
+          "ticker": "CBRS",
+          "name": "CBRS",
+          "Weight in VUG": 0.0003631474378597711,
+          "Weight in VGT": 1.702666375544102e-05,
+          "Overlap Allocation (Min)": 1.702666375544102e-05
+        },
+        {
+          "ticker": "CRWV",
+          "name": "CRWV",
+          "Weight in VUG": 0.0011904833362345111,
+          "Weight in VGT": 4.006273824809652e-06,
+          "Overlap Allocation (Min)": 4.006273824809652e-06
         }
       ]
     },
@@ -3171,6 +3534,536 @@
         }
       ]
     },
+    "VOO_vs_VGT": {
+      "sum_of_min": 0.3810235588972432,
+      "directional_a_in_b": 0.3810235588972432,
+      "directional_b_in_a": 0.8692041737360706,
+      "shared_count": 74,
+      "total_count_a": 504,
+      "total_count_b": 316,
+      "count_overlap_a": 0.14682539682539683,
+      "count_overlap_b": 0.23417721518987342,
+      "shared_holdings": [
+        {
+          "ticker": "NVDA",
+          "name": "NVDA",
+          "Weight in VOO": 0.07533032581453636,
+          "Weight in VGT": 0.16847883786008888,
+          "Overlap Allocation (Min)": 0.07533032581453636
+        },
+        {
+          "ticker": "AAPL",
+          "name": "AAPL",
+          "Weight in VOO": 0.06606516290726819,
+          "Weight in VGT": 0.14591149740493614,
+          "Overlap Allocation (Min)": 0.06606516290726819
+        },
+        {
+          "ticker": "MSFT",
+          "name": "MSFT",
+          "Weight in VOO": 0.04307368421052632,
+          "Weight in VGT": 0.09471632576614979,
+          "Overlap Allocation (Min)": 0.04307368421052632
+        },
+        {
+          "ticker": "AVGO",
+          "name": "AVGO",
+          "Weight in VOO": 0.0278015037593985,
+          "Weight in VGT": 0.0421309771101545,
+          "Overlap Allocation (Min)": 0.0278015037593985
+        },
+        {
+          "ticker": "MU",
+          "name": "MU",
+          "Weight in VOO": 0.020236591478696747,
+          "Weight in VGT": 0.042073887708150966,
+          "Overlap Allocation (Min)": 0.020236591478696747
+        },
+        {
+          "ticker": "AMD",
+          "name": "AMD",
+          "Weight in VOO": 0.014724812030075193,
+          "Weight in VGT": 0.03213832862262302,
+          "Overlap Allocation (Min)": 0.014724812030075193
+        },
+        {
+          "ticker": "INTC",
+          "name": "INTC",
+          "Weight in VOO": 0.010255639097744362,
+          "Weight in VGT": 0.02034185534547101,
+          "Overlap Allocation (Min)": 0.010255639097744362
+        },
+        {
+          "ticker": "AMAT",
+          "name": "AMAT",
+          "Weight in VOO": 0.008919298245614037,
+          "Weight in VGT": 0.013978890943217076,
+          "Overlap Allocation (Min)": 0.008919298245614037
+        },
+        {
+          "ticker": "LRCX",
+          "name": "LRCX",
+          "Weight in VOO": 0.008424060150375941,
+          "Weight in VGT": 0.015611447526827011,
+          "Overlap Allocation (Min)": 0.008424060150375941
+        },
+        {
+          "ticker": "CSCO",
+          "name": "CSCO",
+          "Weight in VOO": 0.007212030075187972,
+          "Weight in VGT": 0.01855004937732489,
+          "Overlap Allocation (Min)": 0.007212030075187972
+        },
+        {
+          "ticker": "KLAC",
+          "name": "KLAC",
+          "Weight in VOO": 0.0061263157894736854,
+          "Weight in VGT": 0.010025700246586151,
+          "Overlap Allocation (Min)": 0.0061263157894736854
+        },
+        {
+          "ticker": "SNDK",
+          "name": "SNDK",
+          "Weight in VOO": 0.0052320802005012546,
+          "Weight in VGT": 0.009837405376820098,
+          "Overlap Allocation (Min)": 0.0052320802005012546
+        },
+        {
+          "ticker": "PANW",
+          "name": "PANW",
+          "Weight in VOO": 0.004299749373433585,
+          "Weight in VGT": 0.009195399996394352,
+          "Overlap Allocation (Min)": 0.004299749373433585
+        },
+        {
+          "ticker": "TXN",
+          "name": "TXN",
+          "Weight in VOO": 0.004217543859649123,
+          "Weight in VGT": 0.011104389473916152,
+          "Overlap Allocation (Min)": 0.004217543859649123
+        },
+        {
+          "ticker": "PLTR",
+          "name": "PLTR",
+          "Weight in VOO": 0.004164411027568923,
+          "Weight in VGT": 0.01348611926276549,
+          "Overlap Allocation (Min)": 0.004164411027568923
+        },
+        {
+          "ticker": "IBM",
+          "name": "IBM",
+          "Weight in VOO": 0.004109273182957394,
+          "Weight in VGT": 0.01084197853839112,
+          "Overlap Allocation (Min)": 0.004109273182957394
+        },
+        {
+          "ticker": "MRVL",
+          "name": "MRVL",
+          "Weight in VOO": 0.0040551378446115295,
+          "Weight in VGT": 0.007257365033642684,
+          "Overlap Allocation (Min)": 0.0040551378446115295
+        },
+        {
+          "ticker": "ORCL",
+          "name": "ORCL",
+          "Weight in VOO": 0.0038656641604010032,
+          "Weight in VGT": 0.014568814763920296,
+          "Overlap Allocation (Min)": 0.0038656641604010032
+        },
+        {
+          "ticker": "WDC",
+          "name": "WDC",
+          "Weight in VOO": 0.003422556390977444,
+          "Weight in VGT": 0.007565848118153027,
+          "Overlap Allocation (Min)": 0.003422556390977444
+        },
+        {
+          "ticker": "APH",
+          "name": "APH",
+          "Weight in VOO": 0.0033714285714285717,
+          "Weight in VGT": 0.007316457572558627,
+          "Overlap Allocation (Min)": 0.0033714285714285717
+        },
+        {
+          "ticker": "STX",
+          "name": "STX",
+          "Weight in VOO": 0.003365413533834587,
+          "Weight in VGT": 0.00805661666169221,
+          "Overlap Allocation (Min)": 0.003365413533834587
+        },
+        {
+          "ticker": "GLW",
+          "name": "GLW",
+          "Weight in VOO": 0.0031097744360902256,
+          "Weight in VGT": 0.006115576993571934,
+          "Overlap Allocation (Min)": 0.0031097744360902256
+        },
+        {
+          "ticker": "QCOM",
+          "name": "QCOM",
+          "Weight in VOO": 0.003026566416040101,
+          "Weight in VGT": 0.010871024023620989,
+          "Overlap Allocation (Min)": 0.003026566416040101
+        },
+        {
+          "ticker": "CRWD",
+          "name": "CRWD",
+          "Weight in VOO": 0.003020551378446116,
+          "Weight in VGT": 0.007540808906747967,
+          "Overlap Allocation (Min)": 0.003020551378446116
+        },
+        {
+          "ticker": "ADI",
+          "name": "ADI",
+          "Weight in VOO": 0.0030145363408521308,
+          "Weight in VGT": 0.008171797034155487,
+          "Overlap Allocation (Min)": 0.0030145363408521308
+        },
+        {
+          "ticker": "ANET",
+          "name": "ANET",
+          "Weight in VOO": 0.002726817042606517,
+          "Weight in VGT": 0.006885783136391589,
+          "Overlap Allocation (Min)": 0.002726817042606517
+        },
+        {
+          "ticker": "APP",
+          "name": "APP",
+          "Weight in VOO": 0.002154385964912281,
+          "Weight in VGT": 0.005793071950674756,
+          "Overlap Allocation (Min)": 0.002154385964912281
+        },
+        {
+          "ticker": "CRM",
+          "name": "CRM",
+          "Weight in VOO": 0.0019879699248120304,
+          "Weight in VGT": 0.006960900770606769,
+          "Overlap Allocation (Min)": 0.0019879699248120304
+        },
+        {
+          "ticker": "DELL",
+          "name": "DELL",
+          "Weight in VOO": 0.0019398496240601508,
+          "Weight in VGT": 0.006112572288203326,
+          "Overlap Allocation (Min)": 0.0019398496240601508
+        },
+        {
+          "ticker": "CDNS",
+          "name": "CDNS",
+          "Weight in VOO": 0.0016090225563909779,
+          "Weight in VGT": 0.0044369482609766895,
+          "Overlap Allocation (Min)": 0.0016090225563909779
+        },
+        {
+          "ticker": "NOW",
+          "name": "NOW",
+          "Weight in VOO": 0.001590977443609023,
+          "Weight in VGT": 0.005148061864880403,
+          "Overlap Allocation (Min)": 0.001590977443609023
+        },
+        {
+          "ticker": "FTNT",
+          "name": "FTNT",
+          "Weight in VOO": 0.00148671679197995,
+          "Weight in VGT": 0.004168527914714442,
+          "Overlap Allocation (Min)": 0.00148671679197995
+        },
+        {
+          "ticker": "DDOG",
+          "name": "DDOG",
+          "Weight in VOO": 0.0013393483709273186,
+          "Weight in VGT": 0.003608651147697294,
+          "Overlap Allocation (Min)": 0.0013393483709273186
+        },
+        {
+          "ticker": "SNPS",
+          "name": "SNPS",
+          "Weight in VOO": 0.0013283208020050128,
+          "Weight in VGT": 0.0038840824731529574,
+          "Overlap Allocation (Min)": 0.0013283208020050128
+        },
+        {
+          "ticker": "ADBE",
+          "name": "ADBE",
+          "Weight in VOO": 0.0012882205513784464,
+          "Weight in VGT": 0.00450805962136706,
+          "Overlap Allocation (Min)": 0.0012882205513784464
+        },
+        {
+          "ticker": "COHR",
+          "name": "COHR",
+          "Weight in VOO": 0.0012010025062656644,
+          "Weight in VGT": 0.0026711830726918353,
+          "Overlap Allocation (Min)": 0.0012010025062656644
+        },
+        {
+          "ticker": "ACN",
+          "name": "ACN",
+          "Weight in VOO": 0.0011879699248120302,
+          "Weight in VGT": 0.0047424266401184245,
+          "Overlap Allocation (Min)": 0.0011879699248120302
+        },
+        {
+          "ticker": "TER",
+          "name": "TER",
+          "Weight in VOO": 0.0011769423558897246,
+          "Weight in VGT": 0.0027342818854325874,
+          "Overlap Allocation (Min)": 0.0011769423558897246
+        },
+        {
+          "ticker": "INTU",
+          "name": "INTU",
+          "Weight in VOO": 0.0011218045112781957,
+          "Weight in VGT": 0.003705803287948928,
+          "Overlap Allocation (Min)": 0.0011218045112781957
+        },
+        {
+          "ticker": "NXPI",
+          "name": "NXPI",
+          "Weight in VOO": 0.0011037593984962407,
+          "Weight in VGT": 0.003763894258408668,
+          "Overlap Allocation (Min)": 0.0011037593984962407
+        },
+        {
+          "ticker": "CIEN",
+          "name": "CIEN",
+          "Weight in VOO": 0.0010776942355889725,
+          "Weight in VGT": 0.0036827672134562726,
+          "Overlap Allocation (Min)": 0.0010776942355889725
+        },
+        {
+          "ticker": "MSI",
+          "name": "MSI",
+          "Weight in VOO": 0.0010716791979949875,
+          "Weight in VGT": 0.003002702231694834,
+          "Overlap Allocation (Min)": 0.0010716791979949875
+        },
+        {
+          "ticker": "MPWR",
+          "name": "MPWR",
+          "Weight in VOO": 0.0010566416040100252,
+          "Weight in VGT": 0.0033782904027707386,
+          "Overlap Allocation (Min)": 0.0010566416040100252
+        },
+        {
+          "ticker": "LITE",
+          "name": "LITE",
+          "Weight in VOO": 0.0010395989974937344,
+          "Weight in VGT": 0.002786363445155113,
+          "Overlap Allocation (Min)": 0.0010395989974937344
+        },
+        {
+          "ticker": "KEYS",
+          "name": "KEYS",
+          "Weight in VOO": 0.0009333333333333334,
+          "Weight in VGT": 0.002722263063958158,
+          "Overlap Allocation (Min)": 0.0009333333333333334
+        },
+        {
+          "ticker": "HPE",
+          "name": "HPE",
+          "Weight in VOO": 0.0009303258145363409,
+          "Weight in VGT": 0.0029876787048517977,
+          "Overlap Allocation (Min)": 0.0009303258145363409
+        },
+        {
+          "ticker": "FLEX",
+          "name": "FLEX",
+          "Weight in VOO": 0.0009293233082706769,
+          "Weight in VGT": 0.0030557853598735616,
+          "Overlap Allocation (Min)": 0.0009293233082706769
+        },
+        {
+          "ticker": "TEL",
+          "name": "TEL",
+          "Weight in VOO": 0.0009142857142857145,
+          "Weight in VGT": 0.0028164104988411855,
+          "Overlap Allocation (Min)": 0.0009142857142857145
+        },
+        {
+          "ticker": "MCHP",
+          "name": "MCHP",
+          "Weight in VOO": 0.0007669172932330828,
+          "Weight in VGT": 0.0025519964264037486,
+          "Overlap Allocation (Min)": 0.0007669172932330828
+        },
+        {
+          "ticker": "ADSK",
+          "name": "ADSK",
+          "Weight in VOO": 0.0006385964912280703,
+          "Weight in VGT": 0.00229960117544074,
+          "Overlap Allocation (Min)": 0.0006385964912280703
+        },
+        {
+          "ticker": "JBL",
+          "name": "JBL",
+          "Weight in VOO": 0.0006325814536340854,
+          "Weight in VGT": 0.00203819180837191,
+          "Overlap Allocation (Min)": 0.0006325814536340854
+        },
+        {
+          "ticker": "ON",
+          "name": "ON",
+          "Weight in VOO": 0.0005754385964912281,
+          "Weight in VGT": 0.0025800403431774158,
+          "Overlap Allocation (Min)": 0.0005754385964912281
+        },
+        {
+          "ticker": "Q",
+          "name": "Q",
+          "Weight in VOO": 0.000531328320802005,
+          "Weight in VGT": 0.0018348734117628206,
+          "Overlap Allocation (Min)": 0.000531328320802005
+        },
+        {
+          "ticker": "ROP",
+          "name": "ROP",
+          "Weight in VOO": 0.000530325814536341,
+          "Weight in VGT": 0.0017377212715111862,
+          "Overlap Allocation (Min)": 0.000530325814536341
+        },
+        {
+          "ticker": "TDY",
+          "name": "TDY",
+          "Weight in VOO": 0.0004802005012531329,
+          "Weight in VGT": 0.0016095205091172778,
+          "Overlap Allocation (Min)": 0.0004802005012531329
+        },
+        {
+          "ticker": "NTAP",
+          "name": "NTAP",
+          "Weight in VOO": 0.00047418546365914793,
+          "Weight in VGT": 0.0021764082553278434,
+          "Overlap Allocation (Min)": 0.00047418546365914793
+        },
+        {
+          "ticker": "FICO",
+          "name": "FICO",
+          "Weight in VOO": 0.000431077694235589,
+          "Weight in VGT": 0.0015904907084494317,
+          "Overlap Allocation (Min)": 0.000431077694235589
+        },
+        {
+          "ticker": "FSLR",
+          "name": "FSLR",
+          "Weight in VOO": 0.0003939849624060151,
+          "Weight in VGT": 0.0019340286889268593,
+          "Overlap Allocation (Min)": 0.0003939849624060151
+        },
+        {
+          "ticker": "WDAY",
+          "name": "WDAY",
+          "Weight in VOO": 0.0003879699248120301,
+          "Weight in VGT": 0.0015514295386575376,
+          "Overlap Allocation (Min)": 0.0003879699248120301
+        },
+        {
+          "ticker": "FFIV",
+          "name": "FFIV",
+          "Weight in VOO": 0.00036491228070175443,
+          "Weight in VGT": 0.0014943401366540002,
+          "Overlap Allocation (Min)": 0.00036491228070175443
+        },
+        {
+          "ticker": "VRSN",
+          "name": "VRSN",
+          "Weight in VOO": 0.0003197994987468672,
+          "Weight in VGT": 0.0014512726930372964,
+          "Overlap Allocation (Min)": 0.0003197994987468672
+        },
+        {
+          "ticker": "HPQ",
+          "name": "HPQ",
+          "Weight in VOO": 0.0003117794486215539,
+          "Weight in VGT": 0.001540412285639311,
+          "Overlap Allocation (Min)": 0.0003117794486215539
+        },
+        {
+          "ticker": "CTSH",
+          "name": "CTSH",
+          "Weight in VOO": 0.00028571428571428574,
+          "Weight in VGT": 0.0014883307259167858,
+          "Overlap Allocation (Min)": 0.00028571428571428574
+        },
+        {
+          "ticker": "CDW",
+          "name": "CDW",
+          "Weight in VOO": 0.0002796992481203008,
+          "Weight in VGT": 0.0011017253018226543,
+          "Overlap Allocation (Min)": 0.0002796992481203008
+        },
+        {
+          "ticker": "AKAM",
+          "name": "AKAM",
+          "Weight in VOO": 0.0002666666666666667,
+          "Weight in VGT": 0.0015884875715370269,
+          "Overlap Allocation (Min)": 0.0002666666666666667
+        },
+        {
+          "ticker": "SMCI",
+          "name": "SMCI",
+          "Weight in VOO": 0.0002566416040100251,
+          "Weight in VGT": 0.001414214660157807,
+          "Overlap Allocation (Min)": 0.0002566416040100251
+        },
+        {
+          "ticker": "GEN",
+          "name": "GEN",
+          "Weight in VOO": 0.0002135338345864662,
+          "Weight in VGT": 0.0011197535340342977,
+          "Overlap Allocation (Min)": 0.0002135338345864662
+        },
+        {
+          "ticker": "PTC",
+          "name": "PTC",
+          "Weight in VOO": 0.00020350877192982456,
+          "Weight in VGT": 0.001047640605187724,
+          "Overlap Allocation (Min)": 0.00020350877192982456
+        },
+        {
+          "ticker": "ZBRA",
+          "name": "ZBRA",
+          "Weight in VOO": 0.00019448621553884714,
+          "Weight in VGT": 0.0009935559085527937,
+          "Overlap Allocation (Min)": 0.00019448621553884714
+        },
+        {
+          "ticker": "TYL",
+          "name": "TYL",
+          "Weight in VOO": 0.00019147869674185464,
+          "Weight in VGT": 0.0009034147474945765,
+          "Overlap Allocation (Min)": 0.00019147869674185464
+        },
+        {
+          "ticker": "TRMB",
+          "name": "TRMB",
+          "Weight in VOO": 0.0001854636591478697,
+          "Weight in VGT": 0.0009354649380930537,
+          "Overlap Allocation (Min)": 0.0001854636591478697
+        },
+        {
+          "ticker": "GDDY",
+          "name": "GDDY",
+          "Weight in VOO": 0.00017443609022556395,
+          "Weight in VGT": 0.000870362988439897,
+          "Overlap Allocation (Min)": 0.00017443609022556395
+        },
+        {
+          "ticker": "SWKS",
+          "name": "SWKS",
+          "Weight in VOO": 0.0001583959899749374,
+          "Weight in VGT": 0.0010446358998191167,
+          "Overlap Allocation (Min)": 0.0001583959899749374
+        },
+        {
+          "ticker": "IT",
+          "name": "IT",
+          "Weight in VOO": 0.00013433583959899752,
+          "Weight in VGT": 0.0008623504407902776,
+          "Overlap Allocation (Min)": 0.00013433583959899752
+        }
+      ]
+    },
     "SCHD_vs_QQQ": {
       "sum_of_min": 0.051680246438814914,
       "directional_a_in_b": 0.21498614250417225,
@@ -3311,6 +4204,46 @@
           "Weight in SCHD": 0.0037217274508722954,
           "Weight in SPMO": 0.0010495363130559716,
           "Overlap Allocation (Min)": 0.0010495363130559716
+        }
+      ]
+    },
+    "SCHD_vs_VGT": {
+      "sum_of_min": 0.02776247603747468,
+      "directional_a_in_b": 0.08744806571409955,
+      "directional_b_in_a": 0.02776247603747468,
+      "shared_count": 4,
+      "total_count_a": 99,
+      "total_count_b": 316,
+      "count_overlap_a": 0.04040404040404041,
+      "count_overlap_b": 0.012658227848101266,
+      "shared_holdings": [
+        {
+          "ticker": "TXN",
+          "name": "TXN",
+          "Weight in SCHD": 0.03131242764282242,
+          "Weight in VGT": 0.011104389473916152,
+          "Overlap Allocation (Min)": 0.011104389473916152
+        },
+        {
+          "ticker": "QCOM",
+          "name": "QCOM",
+          "Weight in SCHD": 0.025254221148593447,
+          "Weight in VGT": 0.010871024023620989,
+          "Overlap Allocation (Min)": 0.010871024023620989
+        },
+        {
+          "ticker": "ACN",
+          "name": "ACN",
+          "Weight in SCHD": 0.02842565816840491,
+          "Weight in VGT": 0.0047424266401184245,
+          "Overlap Allocation (Min)": 0.0047424266401184245
+        },
+        {
+          "ticker": "SWKS",
+          "name": "SWKS",
+          "Weight in SCHD": 0.0024557587542787837,
+          "Weight in VGT": 0.0010446358998191167,
+          "Overlap Allocation (Min)": 0.0010446358998191167
         }
       ]
     },
@@ -3484,6 +4417,478 @@
           "Weight in QQQ": 0.0021040635164799953,
           "Weight in SPMO": 0.003797940747722086,
           "Overlap Allocation (Min)": 0.0021040635164799953
+        }
+      ]
+    },
+    "QQQ_vs_VGT": {
+      "sum_of_min": 0.5294767279440774,
+      "directional_a_in_b": 0.5611850854844654,
+      "directional_b_in_a": 0.7524773795764166,
+      "shared_count": 39,
+      "total_count_a": 101,
+      "total_count_b": 316,
+      "count_overlap_a": 0.38613861386138615,
+      "count_overlap_b": 0.12341772151898735,
+      "shared_holdings": [
+        {
+          "ticker": "NVDA",
+          "name": "NVDA",
+          "Weight in QQQ": 0.08211956608822446,
+          "Weight in VGT": 0.16847883786008888,
+          "Overlap Allocation (Min)": 0.08211956608822446
+        },
+        {
+          "ticker": "AAPL",
+          "name": "AAPL",
+          "Weight in QQQ": 0.07917728212277077,
+          "Weight in VGT": 0.14591149740493614,
+          "Overlap Allocation (Min)": 0.07917728212277077
+        },
+        {
+          "ticker": "MSFT",
+          "name": "MSFT",
+          "Weight in QQQ": 0.06238683523209794,
+          "Weight in VGT": 0.09471632576614979,
+          "Overlap Allocation (Min)": 0.06238683523209794
+        },
+        {
+          "ticker": "MU",
+          "name": "MU",
+          "Weight in QQQ": 0.04445272316492814,
+          "Weight in VGT": 0.042073887708150966,
+          "Overlap Allocation (Min)": 0.042073887708150966
+        },
+        {
+          "ticker": "AMD",
+          "name": "AMD",
+          "Weight in QQQ": 0.03776899165184509,
+          "Weight in VGT": 0.03213832862262302,
+          "Overlap Allocation (Min)": 0.03213832862262302
+        },
+        {
+          "ticker": "AVGO",
+          "name": "AVGO",
+          "Weight in QQQ": 0.024702967520710155,
+          "Weight in VGT": 0.0421309771101545,
+          "Overlap Allocation (Min)": 0.024702967520710155
+        },
+        {
+          "ticker": "INTC",
+          "name": "INTC",
+          "Weight in QQQ": 0.020701140861093755,
+          "Weight in VGT": 0.02034185534547101,
+          "Overlap Allocation (Min)": 0.02034185534547101
+        },
+        {
+          "ticker": "CSCO",
+          "name": "CSCO",
+          "Weight in QQQ": 0.01892154977647455,
+          "Weight in VGT": 0.01855004937732489,
+          "Overlap Allocation (Min)": 0.01855004937732489
+        },
+        {
+          "ticker": "PLTR",
+          "name": "PLTR",
+          "Weight in QQQ": 0.01992200644137865,
+          "Weight in VGT": 0.01348611926276549,
+          "Overlap Allocation (Min)": 0.01348611926276549
+        },
+        {
+          "ticker": "AMAT",
+          "name": "AMAT",
+          "Weight in QQQ": 0.013395503853610859,
+          "Weight in VGT": 0.013978890943217076,
+          "Overlap Allocation (Min)": 0.013395503853610859
+        },
+        {
+          "ticker": "LRCX",
+          "name": "LRCX",
+          "Weight in QQQ": 0.01294184332387957,
+          "Weight in VGT": 0.015611447526827011,
+          "Overlap Allocation (Min)": 0.01294184332387957
+        },
+        {
+          "ticker": "TXN",
+          "name": "TXN",
+          "Weight in QQQ": 0.01185726417664119,
+          "Weight in VGT": 0.011104389473916152,
+          "Overlap Allocation (Min)": 0.011104389473916152
+        },
+        {
+          "ticker": "PANW",
+          "name": "PANW",
+          "Weight in QQQ": 0.013859178964572418,
+          "Weight in VGT": 0.009195399996394352,
+          "Overlap Allocation (Min)": 0.009195399996394352
+        },
+        {
+          "ticker": "KLAC",
+          "name": "KLAC",
+          "Weight in QQQ": 0.008490361967023987,
+          "Weight in VGT": 0.010025700246586151,
+          "Overlap Allocation (Min)": 0.008490361967023987
+        },
+        {
+          "ticker": "QCOM",
+          "name": "QCOM",
+          "Weight in QQQ": 0.008214960983191529,
+          "Weight in VGT": 0.010871024023620989,
+          "Overlap Allocation (Min)": 0.008214960983191529
+        },
+        {
+          "ticker": "ADI",
+          "name": "ADI",
+          "Weight in QQQ": 0.008608534025541188,
+          "Weight in VGT": 0.008171797034155487,
+          "Overlap Allocation (Min)": 0.008171797034155487
+        },
+        {
+          "ticker": "SNDK",
+          "name": "SNDK",
+          "Weight in QQQ": 0.008005656235478857,
+          "Weight in VGT": 0.009837405376820098,
+          "Overlap Allocation (Min)": 0.008005656235478857
+        },
+        {
+          "ticker": "CRWD",
+          "name": "CRWD",
+          "Weight in QQQ": 0.01167600025637328,
+          "Weight in VGT": 0.007540808906747967,
+          "Overlap Allocation (Min)": 0.007540808906747967
+        },
+        {
+          "ticker": "MRVL",
+          "name": "MRVL",
+          "Weight in QQQ": 0.008930002083032898,
+          "Weight in VGT": 0.007257365033642684,
+          "Overlap Allocation (Min)": 0.007257365033642684
+        },
+        {
+          "ticker": "STX",
+          "name": "STX",
+          "Weight in QQQ": 0.006358257623099234,
+          "Weight in VGT": 0.00805661666169221,
+          "Overlap Allocation (Min)": 0.006358257623099234
+        },
+        {
+          "ticker": "WDC",
+          "name": "WDC",
+          "Weight in QQQ": 0.0055911407008604535,
+          "Weight in VGT": 0.007565848118153027,
+          "Overlap Allocation (Min)": 0.0055911407008604535
+        },
+        {
+          "ticker": "ADBE",
+          "name": "ADBE",
+          "Weight in QQQ": 0.00447651780993126,
+          "Weight in VGT": 0.00450805962136706,
+          "Overlap Allocation (Min)": 0.00447651780993126
+        },
+        {
+          "ticker": "FTNT",
+          "name": "FTNT",
+          "Weight in QQQ": 0.005857528561585669,
+          "Weight in VGT": 0.004168527914714442,
+          "Overlap Allocation (Min)": 0.004168527914714442
+        },
+        {
+          "ticker": "CDNS",
+          "name": "CDNS",
+          "Weight in QQQ": 0.0038636254386386583,
+          "Weight in VGT": 0.0044369482609766895,
+          "Overlap Allocation (Min)": 0.0038636254386386583
+        },
+        {
+          "ticker": "SNPS",
+          "name": "SNPS",
+          "Weight in QQQ": 0.003791520453780705,
+          "Weight in VGT": 0.0038840824731529574,
+          "Overlap Allocation (Min)": 0.003791520453780705
+        },
+        {
+          "ticker": "INTU",
+          "name": "INTU",
+          "Weight in QQQ": 0.004047893733275651,
+          "Weight in VGT": 0.003705803287948928,
+          "Overlap Allocation (Min)": 0.003705803287948928
+        },
+        {
+          "ticker": "DDOG",
+          "name": "DDOG",
+          "Weight in QQQ": 0.004086950600073708,
+          "Weight in VGT": 0.003608651147697294,
+          "Overlap Allocation (Min)": 0.003608651147697294
+        },
+        {
+          "ticker": "APP",
+          "name": "APP",
+          "Weight in QQQ": 0.0034560319825666175,
+          "Weight in VGT": 0.005793071950674756,
+          "Overlap Allocation (Min)": 0.0034560319825666175
+        },
+        {
+          "ticker": "LITE",
+          "name": "LITE",
+          "Weight in QQQ": 0.003195652870579564,
+          "Weight in VGT": 0.002786363445155113,
+          "Overlap Allocation (Min)": 0.002786363445155113
+        },
+        {
+          "ticker": "NXPI",
+          "name": "NXPI",
+          "Weight in QQQ": 0.0026989296415581092,
+          "Weight in VGT": 0.003763894258408668,
+          "Overlap Allocation (Min)": 0.0026989296415581092
+        },
+        {
+          "ticker": "MPWR",
+          "name": "MPWR",
+          "Weight in QQQ": 0.0024976365588296563,
+          "Weight in VGT": 0.0033782904027707386,
+          "Overlap Allocation (Min)": 0.0024976365588296563
+        },
+        {
+          "ticker": "ADSK",
+          "name": "ADSK",
+          "Weight in QQQ": 0.002269304106779471,
+          "Weight in VGT": 0.00229960117544074,
+          "Overlap Allocation (Min)": 0.002269304106779471
+        },
+        {
+          "ticker": "TER",
+          "name": "TER",
+          "Weight in QQQ": 0.0021040635164799953,
+          "Weight in VGT": 0.0027342818854325874,
+          "Overlap Allocation (Min)": 0.0021040635164799953
+        },
+        {
+          "ticker": "ALAB",
+          "name": "ALAB",
+          "Weight in QQQ": 0.001960855004887116,
+          "Weight in VGT": 0.002762325802206255,
+          "Overlap Allocation (Min)": 0.001960855004887116
+        },
+        {
+          "ticker": "MCHP",
+          "name": "MCHP",
+          "Weight in QQQ": 0.0017936114983415855,
+          "Weight in VGT": 0.0025519964264037486,
+          "Overlap Allocation (Min)": 0.0017936114983415855
+        },
+        {
+          "ticker": "MSTR",
+          "name": "MSTR",
+          "Weight in QQQ": 0.002220232658751142,
+          "Weight in VGT": 0.0017577526406352345,
+          "Overlap Allocation (Min)": 0.0017577526406352345
+        },
+        {
+          "ticker": "ROP",
+          "name": "ROP",
+          "Weight in QQQ": 0.0019017689756285153,
+          "Weight in VGT": 0.0017377212715111862,
+          "Overlap Allocation (Min)": 0.0017377212715111862
+        },
+        {
+          "ticker": "WDAY",
+          "name": "WDAY",
+          "Weight in QQQ": 0.0017785896264961786,
+          "Weight in VGT": 0.0015514295386575376,
+          "Overlap Allocation (Min)": 0.0015514295386575376
+        },
+        {
+          "ticker": "CRWV",
+          "name": "CRWV",
+          "Weight in QQQ": 0.0011026053934528675,
+          "Weight in VGT": 4.006273824809652e-06,
+          "Overlap Allocation (Min)": 4.006273824809652e-06
+        }
+      ]
+    },
+    "SPMO_vs_VGT": {
+      "sum_of_min": 0.3396571288762103,
+      "directional_a_in_b": 0.50263984896282,
+      "directional_b_in_a": 0.38713926008128724,
+      "shared_count": 25,
+      "total_count_a": 99,
+      "total_count_b": 316,
+      "count_overlap_a": 0.25252525252525254,
+      "count_overlap_b": 0.07911392405063292,
+      "shared_holdings": [
+        {
+          "ticker": "AAPL",
+          "name": "AAPL",
+          "Weight in SPMO": 0.10258342012768525,
+          "Weight in VGT": 0.14591149740493614,
+          "Overlap Allocation (Min)": 0.10258342012768525
+        },
+        {
+          "ticker": "MU",
+          "name": "MU",
+          "Weight in SPMO": 0.0855737281750975,
+          "Weight in VGT": 0.042073887708150966,
+          "Overlap Allocation (Min)": 0.042073887708150966
+        },
+        {
+          "ticker": "AMD",
+          "name": "AMD",
+          "Weight in SPMO": 0.05197255797712632,
+          "Weight in VGT": 0.03213832862262302,
+          "Overlap Allocation (Min)": 0.03213832862262302
+        },
+        {
+          "ticker": "INTC",
+          "name": "INTC",
+          "Weight in SPMO": 0.04390543567763127,
+          "Weight in VGT": 0.02034185534547101,
+          "Overlap Allocation (Min)": 0.02034185534547101
+        },
+        {
+          "ticker": "CSCO",
+          "name": "CSCO",
+          "Weight in SPMO": 0.02484469563947177,
+          "Weight in VGT": 0.01855004937732489,
+          "Overlap Allocation (Min)": 0.01855004937732489
+        },
+        {
+          "ticker": "LRCX",
+          "name": "LRCX",
+          "Weight in SPMO": 0.022902703281376783,
+          "Weight in VGT": 0.015611447526827011,
+          "Overlap Allocation (Min)": 0.015611447526827011
+        },
+        {
+          "ticker": "AMAT",
+          "name": "AMAT",
+          "Weight in SPMO": 0.02235442311020932,
+          "Weight in VGT": 0.013978890943217076,
+          "Overlap Allocation (Min)": 0.013978890943217076
+        },
+        {
+          "ticker": "SNDK",
+          "name": "SNDK",
+          "Weight in SPMO": 0.021439955817422703,
+          "Weight in VGT": 0.009837405376820098,
+          "Overlap Allocation (Min)": 0.009837405376820098
+        },
+        {
+          "ticker": "KLAC",
+          "name": "KLAC",
+          "Weight in SPMO": 0.009758986842276404,
+          "Weight in VGT": 0.010025700246586151,
+          "Overlap Allocation (Min)": 0.009758986842276404
+        },
+        {
+          "ticker": "PANW",
+          "name": "PANW",
+          "Weight in SPMO": 0.018162280925552957,
+          "Weight in VGT": 0.009195399996394352,
+          "Overlap Allocation (Min)": 0.009195399996394352
+        },
+        {
+          "ticker": "ADI",
+          "name": "ADI",
+          "Weight in SPMO": 0.00986003847966311,
+          "Weight in VGT": 0.008171797034155487,
+          "Overlap Allocation (Min)": 0.008171797034155487
+        },
+        {
+          "ticker": "STX",
+          "name": "STX",
+          "Weight in SPMO": 0.016948660765651248,
+          "Weight in VGT": 0.00805661666169221,
+          "Overlap Allocation (Min)": 0.00805661666169221
+        },
+        {
+          "ticker": "WDC",
+          "name": "WDC",
+          "Weight in SPMO": 0.014696509916567367,
+          "Weight in VGT": 0.007565848118153027,
+          "Overlap Allocation (Min)": 0.007565848118153027
+        },
+        {
+          "ticker": "MRVL",
+          "name": "MRVL",
+          "Weight in SPMO": 0.009831023653086727,
+          "Weight in VGT": 0.007257365033642684,
+          "Overlap Allocation (Min)": 0.007257365033642684
+        },
+        {
+          "ticker": "DELL",
+          "name": "DELL",
+          "Weight in SPMO": 0.010046133574256445,
+          "Weight in VGT": 0.006112572288203326,
+          "Overlap Allocation (Min)": 0.006112572288203326
+        },
+        {
+          "ticker": "GLW",
+          "name": "GLW",
+          "Weight in SPMO": 0.004936522563029708,
+          "Weight in VGT": 0.006115576993571934,
+          "Overlap Allocation (Min)": 0.004936522563029708
+        },
+        {
+          "ticker": "CIEN",
+          "name": "CIEN",
+          "Weight in SPMO": 0.004380238301772206,
+          "Weight in VGT": 0.0036827672134562726,
+          "Overlap Allocation (Min)": 0.0036827672134562726
+        },
+        {
+          "ticker": "HPE",
+          "name": "HPE",
+          "Weight in SPMO": 0.00499255119365996,
+          "Weight in VGT": 0.0029876787048517977,
+          "Overlap Allocation (Min)": 0.0029876787048517977
+        },
+        {
+          "ticker": "MPWR",
+          "name": "MPWR",
+          "Weight in SPMO": 0.002932498506736943,
+          "Weight in VGT": 0.0033782904027707386,
+          "Overlap Allocation (Min)": 0.002932498506736943
+        },
+        {
+          "ticker": "LITE",
+          "name": "LITE",
+          "Weight in SPMO": 0.007947060948144503,
+          "Weight in VGT": 0.002786363445155113,
+          "Overlap Allocation (Min)": 0.002786363445155113
+        },
+        {
+          "ticker": "TER",
+          "name": "TER",
+          "Weight in SPMO": 0.003797940747722086,
+          "Weight in VGT": 0.0027342818854325874,
+          "Overlap Allocation (Min)": 0.0027342818854325874
+        },
+        {
+          "ticker": "KEYS",
+          "name": "KEYS",
+          "Weight in SPMO": 0.0031316002477265884,
+          "Weight in VGT": 0.002722263063958158,
+          "Overlap Allocation (Min)": 0.002722263063958158
+        },
+        {
+          "ticker": "NTAP",
+          "name": "NTAP",
+          "Weight in SPMO": 0.002094070069805671,
+          "Weight in VGT": 0.0021764082553278434,
+          "Overlap Allocation (Min)": 0.002094070069805671
+        },
+        {
+          "ticker": "COHR",
+          "name": "COHR",
+          "Weight in SPMO": 0.002061053198184272,
+          "Weight in VGT": 0.0026711830726918353,
+          "Overlap Allocation (Min)": 0.002061053198184272
+        },
+        {
+          "ticker": "FLEX",
+          "name": "FLEX",
+          "Weight in SPMO": 0.001485759222962934,
+          "Weight in VGT": 0.0030557853598735616,
+          "Overlap Allocation (Min)": 0.001485759222962934
         }
       ]
     }
