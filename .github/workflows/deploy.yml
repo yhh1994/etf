@@ -26,11 +26,6 @@ jobs:
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements.txt
 
-      - name: Verify Dependencies
-        run: |
-          python3 -m pip show edgartools
-          python3 -c "from edgar import set_identity, Company; print('EdgarTools imported successfully')"
-          
       - name: Run Data Builder Script
         run: python3 build_data.py
         env:
