@@ -1,26 +1,23 @@
 
 import os
+import json
+import urllib.request
 import pandas as pd
-from edgar import set_identity, Fund
-
-# SEC identity
-set_identity(os.getenv(
-    "EDGAR_IDENTITY",
-    "ETFOverlapAnalyst research@example.com"
-))
 
 DATA_DIR = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "../data")
 )
 os.makedirs(DATA_DIR, exist_ok=True)
 
+API_URL = "https://tickerinside.com/api/v1/fund/{}.json"
+
 
 def fetch_etf_holdings(ticker: str) -> pd.DataFrame:
     """
-    Fetch the latest SEC N-PORT filing and return standardized holdings.
+    Fetch ETF holdings from TickerInside.
 
-    Missing ticker identifiers are retained as NA so that the analyzer
-    can exclude them from equity overlap calculations.
+    Weights from the API are percentages, e.g. 10.2531 means 10.2531%.
+    Convert them to fractions for the overlap analyzer.
     """
 
     ticker = ticker.upper().strip()
@@ -29,121 +26,74 @@ def fetch_etf_holdings(ticker: str) -> pd.DataFrame:
     )
 
     try:
-        print(f"[*] Fetching SEC N-PORT data for {ticker}...")
+        print(f"[*] Fetching TickerInside data for {ticker}...")
 
-        fund = Fund(ticker)
+        url = API_URL.format(ticker.lower())
 
-        filings = fund.get_filings(
-            form="NPORT-P",
-            series_only=True
-        )
-        
-        if not filings:
-            raise ValueError(f"No N-PORT filings found for {ticker}")
-        
-        latest_filing = filings[0]
-        fund_obj = latest_filing.obj()
-        
-        print(f"Fund name: {fund_obj.general_info.series_name}")
-        print(f"Series ID: {fund_obj.general_info.series_id}")
-        print(f"Reporting period: {fund_obj.reporting_period}")
-        
-        if not fund_obj.matches_ticker(ticker):
-            raise ValueError(f"Filing does not match {ticker}")
-        
-        df = fund_obj.investment_data()
-
-        if df is None or df.empty:
-            raise ValueError(f"Empty investment data for {ticker}")
-
-        print(f"[{ticker}] Original columns: {df.columns.tolist()}")
-        print(f"[{ticker}] Original rows: {len(df)}")
-
-        # Identify columns explicitly
-        columns_lower = {
-            col: col.lower().strip()
-            for col in df.columns
-        }
-
-        ticker_col = next(
-            (col for col, name in columns_lower.items()
-             if name == "ticker" or name.endswith("_ticker")),
-            None
+        request = urllib.request.Request(
+            url,
+            headers={
+                "User-Agent": "ETFOverlapCalculator/1.0"
+            }
         )
 
-        name_col = next(
-            (col for col, name in columns_lower.items()
-             if name in ("name", "issuer_name", "investment_name")),
-            None
-        )
+        with urllib.request.urlopen(request, timeout=30) as response:
+            payload = json.loads(response.read().decode("utf-8"))
 
-        weight_col = next(
-            (col for col, name in columns_lower.items()
-             if name in ("pct_value", "weight", "portfolio_weight")),
-            None
-        )
-
-        if weight_col is None:
+        if payload.get("ticker", "").upper() != ticker:
             raise ValueError(
-                f"Cannot identify weight column. "
-                f"Available columns: {df.columns.tolist()}"
+                f"API returned unexpected ticker: {payload.get('ticker')}"
             )
 
-        clean_df = pd.DataFrame()
+        holdings = payload.get("holdings")
+
+        if not isinstance(holdings, dict) or not holdings:
+            raise ValueError(f"No holdings available for {ticker}")
+
+        # Convert ticker -> percentage weight into a DataFrame
+        clean_df = pd.DataFrame([
+            {
+                "ticker": holding_ticker,
+                "name": holding_ticker,
+                "weight": float(weight) / 100.0,
+                "holdings_as_of": payload.get("holdings_as_of"),
+                "source_layer": payload.get("source_layer"),
+            }
+            for holding_ticker, weight in holdings.items()
+        ])
 
         clean_df["ticker"] = (
-            df[ticker_col] if ticker_col else pd.NA
-        )
-
-        clean_df["name"] = (
-            df[name_col] if name_col else pd.NA
+            clean_df["ticker"].astype("string").str.strip().str.upper()
         )
 
         clean_df["weight"] = pd.to_numeric(
-            df[weight_col], errors="coerce"
+            clean_df["weight"], errors="coerce"
         )
 
-        # Normalize ticker strings without replacing missing values
-        clean_df["ticker"] = (
-            clean_df["ticker"]
-            .astype("string")
-            .str.strip()
-            .str.upper()
-        )
-
-        invalid_tickers = ["", "NAN", "NONE", "NULL", "N/A", "-"]
-        clean_df.loc[
-            clean_df["ticker"].isin(invalid_tickers), "ticker"
-        ] = pd.NA
-
-        # Remove invalid weights; analyzer handles zero weights
-        clean_df["weight"] = clean_df["weight"].replace(
-            [float("inf"), float("-inf")], pd.NA
-        )
-
-        clean_df = clean_df.dropna(subset=["weight"])
+        clean_df = clean_df.dropna(subset=["ticker", "weight"])
         clean_df = clean_df[clean_df["weight"] > 0].copy()
 
-        # N-PORT percentage weights may be fractions or percentages.
-        # Inspect the total before deciding whether conversion is needed.
-        weight_sum = clean_df["weight"].sum()
+        if clean_df.empty:
+            raise ValueError(f"No valid holdings for {ticker}")
 
-        if weight_sum > 2.0:
-            clean_df["weight"] /= 100.0
+        holdings_date = payload.get("holdings_as_of")
+        source_layer = payload.get("source_layer")
 
         print(
-            f"[{ticker}] Valid rows: {len(clean_df)}, "
-            f"missing tickers: {clean_df['ticker'].isna().sum()}, "
-            f"weight sum: {clean_df['weight'].sum():.4f}"
+            f"[{ticker}] Positions: {len(clean_df)}, "
+            f"Holdings date: {holdings_date}, "
+            f"Source: {source_layer}, "
+            f"Weight sum: {clean_df['weight'].sum():.4f}"
         )
 
+        # Save holdings and source metadata
         clean_df.to_parquet(cache_file, index=False)
 
         return clean_df
 
     except Exception as e:
         print(
-            f"[!] Error pulling via EDGAR for {ticker}: {e}. "
+            f"[!] Error fetching TickerInside data for {ticker}: {e}. "
             "Checking local cache..."
         )
 
@@ -153,5 +103,5 @@ def fetch_etf_holdings(ticker: str) -> pd.DataFrame:
 
         raise RuntimeError(
             f"Could not retrieve holdings for {ticker} "
-            "from SEC or cache."
+            "from TickerInside or cache."
         ) from e
